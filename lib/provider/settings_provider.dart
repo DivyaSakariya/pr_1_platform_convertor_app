@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'Theme_Prefrance.dart';
+import 'theme_preference.dart';
 
 class SettingProvider extends ChangeNotifier {
   late bool _isDark;
@@ -21,7 +21,6 @@ class SettingProvider extends ChangeNotifier {
 
   getPreferences() async {
     _isDark = await _prefs.getTheme();
-    _isPlatformChanged = await _prefs.getPlatform();
     notifyListeners();
   }
 
@@ -30,15 +29,6 @@ class SettingProvider extends ChangeNotifier {
 
   set isSwitched(bool value) {
     _isSwitched = value;
-    notifyListeners();
-  }
-
-  bool _isPlatformChanged = false;
-  bool get isPlatformChanged => _isPlatformChanged;
-
-  set isPlatformChanged(bool value) {
-    _isPlatformChanged = value;
-    _prefs.setPlatform(value);
     notifyListeners();
   }
 }

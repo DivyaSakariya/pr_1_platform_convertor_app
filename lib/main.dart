@@ -16,7 +16,7 @@ void main() {
           create: (context) => PlatformProvider(),
         ),
         ChangeNotifierProvider(
-          create: (context) => ContactProvider(),
+          create: (context) => AddContactProvider(),
         ),
         ChangeNotifierProvider(
           create: (context) => SettingProvider(),
@@ -25,7 +25,7 @@ void main() {
           create: (context) => ProfileProvider(),
         ),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }

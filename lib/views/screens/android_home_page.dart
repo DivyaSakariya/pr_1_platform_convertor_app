@@ -67,10 +67,10 @@ class _HomePage_AndroidState extends State<HomePage_Android>
           ),
         ),
         body: TabBarView(controller: tabbarController, children: [
-          ADDContactScreen(),
-          ChatPage(),
-          CallPage(),
-          SettingsPage()
+          const AddContactPage(),
+          const ContactListPage(),
+          const ChatContactPage(),
+          SettingsPage(),
         ]));
   }
 }

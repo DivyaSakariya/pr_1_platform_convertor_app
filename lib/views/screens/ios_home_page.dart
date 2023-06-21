@@ -19,9 +19,9 @@ class HomePage_Ios extends StatefulWidget {
 class _HomePage_IosState extends State<HomePage_Ios> {
   final List<Widget> _pages = [
     // Ios_AddPage(),
-    ADDContactScreen(),
-    ChatPage(),
-    CallPage(),
+    // ADDContactScreen(),
+    // ChatPage(),
+    // CallPage(),
     IOS_SettingsPage(),
   ];
 
@@ -66,9 +66,7 @@ class _HomePage_IosState extends State<HomePage_Ios> {
         tabBuilder: (BuildContext context, int index) {
           return CupertinoTabView(
             builder: (BuildContext context) {
-              return Center(
-                child: Text('Content of tab $index'),
-              );
+              return _pages[index];
             },
           );
         },

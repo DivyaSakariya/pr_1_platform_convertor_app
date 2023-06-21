@@ -12,16 +12,4 @@ class MyThemePreferences {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getBool(themeKey);
   }
-
-  static const String platformKey = "theme_key";
-
-  setPlatform(bool value) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool(platformKey, value);
-  }
-
-  getPlatform() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(platformKey);
-  }
 }
