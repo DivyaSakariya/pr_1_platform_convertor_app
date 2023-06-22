@@ -4,11 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart' hide TextField;
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:platform_convertar/provider/settings_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/contact.dart';
-import '../../models/global.dart';
-import '../../provider/add_contact_provider.dart';
+import '../../../models/contact.dart';
+import '../../../models/global.dart';
+import '../../../provider/add_contact_provider.dart';
 
 class IOsAddContactPage extends StatefulWidget {
   @override
@@ -23,7 +24,6 @@ class _IOsAddContactPageState extends State<IOsAddContactPage> {
   final TextEditingController chatController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   File? image;
-
 
   _pickImage_camera() async {
     final imagePicker = ImagePicker();
@@ -70,10 +70,10 @@ class _IOsAddContactPageState extends State<IOsAddContactPage> {
                               onPressed: _pickImage_camera,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
-                                  Icon(CupertinoIcons.camera),
-                                  SizedBox(width: 8),
-                                  Text('Camera'),
+                                children: [
+                                  const Icon(CupertinoIcons.camera),
+                                  SizedBox(width: w * 0.08),
+                                  const Text('Camera'),
                                 ],
                               ),
                             ),
@@ -81,11 +81,11 @@ class _IOsAddContactPageState extends State<IOsAddContactPage> {
                               onPressed: _pickImage_gallery,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
-                                  Icon(CupertinoIcons
+                                children: [
+                                  const Icon(CupertinoIcons
                                       .photo_fill_on_rectangle_fill),
-                                  SizedBox(width: 8),
-                                  Text('Gallery'),
+                                  SizedBox(width: w * 0.08),
+                                  const Text('Gallery'),
                                 ],
                               ),
                             ),
@@ -115,112 +115,131 @@ class _IOsAddContactPageState extends State<IOsAddContactPage> {
               SizedBox(height: h * 0.02),
               Form(
                 key: addContactFormKey,
-                child: Column(
-                  children: [
-                    CupertinoTextField(
-                      controller: fullNameController,
-                      decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(8),
+                child: Consumer<SettingProvider>(
+                    builder: (context, settingPro, _) {
+                  return Column(
+                    children: [
+                      Row(
+                        children: [
+                          CupertinoTextField(
+                            controller: fullNameController,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: CupertinoColors.systemGrey,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            textInputAction: TextInputAction.next,
+                            prefix: const Padding(
+                              padding: EdgeInsets.all(10),
+                              child: Icon(CupertinoIcons.person),
+                            ),
+                            placeholder: 'Full Name',
+                          ),
+                        ],
                       ),
-                      textInputAction: TextInputAction.next,
-                      prefix: const Icon(CupertinoIcons.person),
-                      placeholder: 'Full Name',
-                    ),
-                    SizedBox(height: h * 0.02),
-                    CupertinoTextField(
-                      maxLength: 10,
-                      controller: phoneNoController,
-                      decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(8),
+                      SizedBox(height: h * 0.02),
+                      CupertinoTextField(
+                        maxLength: 10,
+                        controller: phoneNoController,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: CupertinoColors.systemGrey,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        keyboardType: TextInputType.number,
+                        textInputAction: TextInputAction.next,
+                        prefix: const Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Icon(CupertinoIcons.phone),
+                        ),
+                        placeholder: 'Phone Number',
                       ),
-                      keyboardType: TextInputType.number,
-                      textInputAction: TextInputAction.next,
-                      prefix: const Icon(CupertinoIcons.phone),
-                      placeholder: 'Phone Number',
-                    ),
-                    SizedBox(height: h * 0.02),
-                    CupertinoTextField(
-                      controller: chatController,
-                      decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(8),
+                      SizedBox(height: h * 0.02),
+                      CupertinoTextField(
+                        controller: chatController,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: CupertinoColors.systemGrey,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        textInputAction: TextInputAction.next,
+                        prefix: const Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Icon(CupertinoIcons.chat_bubble),
+                        ),
+                        placeholder: 'Chat Conversation',
                       ),
-                      textInputAction: TextInputAction.next,
-                      prefix: const Icon(CupertinoIcons.chat_bubble),
-                      placeholder: 'Chat Conversation',
-                    ),
-                    SizedBox(height: h * 0.02),
-                    CupertinoTextField(
-                      controller: emailController,
-                      decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(8),
+                      SizedBox(height: h * 0.02),
+                      CupertinoTextField(
+                        controller: emailController,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: CupertinoColors.systemGrey,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        textInputAction: TextInputAction.done,
+                        prefix: const Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Icon(CupertinoIcons.mail),
+                        ),
+                        placeholder: 'Email',
                       ),
-                      keyboardType: TextInputType.emailAddress,
-                      textInputAction: TextInputAction.done,
-                      prefix: const Icon(CupertinoIcons.mail),
-                      placeholder: 'Email',
-                    ),
-                  ],
-                ),
+                    ],
+                  );
+                }),
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              SizedBox(height: h * 0.02),
               Consumer<AddContactProvider>(
                 builder: (context, provider, child) => Row(
                   children: [
                     GestureDetector(
                         child: Row(
                           children: [
-                            SizedBox(
-                                width: MediaQuery.of(context).size.width *
-                                    0.04),
+                            SizedBox(width: w * 0.01),
                             const Icon(Icons.calendar_month_outlined),
+                            SizedBox(width: w * 0.01),
                             const Text("Pick Date"),
                           ],
                         ),
                         onTap: () {
                           provider.showCupertinoDate(context);
-                          // setState(() {
-                          //   pickedDate = provider.cupertinoDate;
-                          // });
                         }),
-                    SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.08),
+                    SizedBox(width: w * 0.08),
                     Text(provider.newCupertinoDate),
                   ],
                 ),
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              SizedBox(height: h * 0.02),
               Consumer<AddContactProvider>(
                 builder: (context, provider, child) => Row(
                   children: [
                     GestureDetector(
                       child: Row(
                         children: [
-                          SizedBox(
-                              width:
-                              MediaQuery.of(context).size.width * 0.04),
+                          SizedBox(width: w * 0.01),
                           const Icon(Icons.watch_later_outlined),
+                          SizedBox(width: w * 0.01),
                           const Text("Pick Time"),
                         ],
                       ),
                       onTap: () {
                         provider.showMyTime(context);
-                        // setState(() {
-                        //   pickedTime = provider.time;
-                        // });
                       },
                     ),
-                    SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.08),
+                    SizedBox(width: w * 0.08),
                     Text(provider.time),
                   ],
                 ),
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              SizedBox(height: h * 0.02),
               CupertinoButton(
+                color: CupertinoColors.activeBlue,
+                minSize: w * 0.03,
                 onPressed: () {
                   if (addContactFormKey.currentState!.validate()) {
                     addContactFormKey.currentState!.save();

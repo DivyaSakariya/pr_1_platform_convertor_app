@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../models/global.dart';
+import '../../../models/global.dart';
 
 class IOsChatPage extends StatelessWidget {
   @override

@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../models/global.dart';
+import '../../../models/global.dart';
 
 class ChatContactPage extends StatefulWidget {
   const ChatContactPage({Key? key}) : super(key: key);
@@ -40,7 +40,10 @@ class _ChatContactPageState extends State<ChatContactPage> {
                     shadowColor: Colors.indigo,
                     child: ListTile(
                       onTap: () {
-                        Navigator.of(context).pushNamed('contact_detail_page', arguments: Global.allContacts[index]).then((value) => setState((){}));
+                        Navigator.of(context)
+                            .pushNamed('contact_detail_page',
+                                arguments: Global.allContacts[index])
+                            .then((value) => setState(() {}));
                         showModalBottomSheet(
                           context: context,
                           builder: (context) => SingleChildScrollView(
@@ -96,11 +99,12 @@ class _ChatContactPageState extends State<ChatContactPage> {
                                     },
                                     child: CircleAvatar(
                                       radius: 50,
-                                      foregroundImage:
-                                          (Global.allContacts[index].image != null)
-                                              ? FileImage(
-                                                  Global.allContacts[index].image!)
-                                              : null,
+                                      foregroundImage: (Global
+                                                  .allContacts[index].image !=
+                                              null)
+                                          ? FileImage(
+                                              Global.allContacts[index].image!)
+                                          : null,
                                       backgroundColor: Colors.indigo,
                                       child: const Icon(
                                         Icons.camera_alt_outlined,
@@ -179,9 +183,10 @@ class _ChatContactPageState extends State<ChatContactPage> {
                       },
                       leading: CircleAvatar(
                         radius: 30,
-                        foregroundImage: (Global.allContacts[index].image != null)
-                            ? FileImage(Global.allContacts[index].image!)
-                            : null,
+                        foregroundImage:
+                            (Global.allContacts[index].image != null)
+                                ? FileImage(Global.allContacts[index].image!)
+                                : null,
                         child: Text(
                           Global.allContacts[index].fullName![0].toUpperCase(),
                         ),

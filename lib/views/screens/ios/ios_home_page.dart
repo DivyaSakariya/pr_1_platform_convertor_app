@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:platform_convertar/provider/platform_provider.dart';
-import 'package:platform_convertar/views/screens/ios_add_contact_page.dart';
-import 'package:platform_convertar/views/screens/ios_contact_list_page.dart';
-import 'package:platform_convertar/views/screens/ios_setting_page.dart';
+import 'package:platform_convertar/views/screens/ios/ios_add_contact_page.dart';
 import 'package:provider/provider.dart';
 
 import 'ios_chat_Page.dart';
-import 'settings_page.dart';
+import 'ios_contact_list_page.dart';
+import 'ios_setting_page.dart';
 
 class IOsHomePage extends StatefulWidget {
   const IOsHomePage({Key? key}) : super(key: key);

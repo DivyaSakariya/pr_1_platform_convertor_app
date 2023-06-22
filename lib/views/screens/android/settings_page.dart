@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
-import '../../provider/settings_provider.dart';
-import '../../provider/profile_provider.dart';
+import '../../../provider/settings_provider.dart';
+import '../../../provider/profile_provider.dart';
 
 class SettingsPage extends StatelessWidget {
   final GlobalKey<FormState> profileFormKey = GlobalKey<FormState>();
@@ -26,11 +26,14 @@ class SettingsPage extends StatelessWidget {
                   Icons.person,
                   color: Colors.grey,
                 ),
-                title: Text("Profile"),
-                subtitle: Text("Update Profile Data"),
-                trailing: Switch(
-                  value: settingProvider.isSwitched,
-                  onChanged: (value) => settingProvider.isSwitched = value,
+                title: const Text("Profile"),
+                subtitle: const Text("Update Profile Data"),
+                trailing: Transform.scale(
+                  scale: 0.8,
+                  child: Switch(
+                    value: settingProvider.isSwitched,
+                    onChanged: (value) => settingProvider.isSwitched = value,
+                  ),
                 ),
               ),
               if (settingProvider.isSwitched)
@@ -57,7 +60,8 @@ class SettingsPage extends StatelessWidget {
                                       children: const [
                                         Text(
                                           "Profile photo",
-                                        ),],
+                                        ),
+                                      ],
                                     ),
                                     const Spacer(),
                                     Row(
@@ -140,7 +144,6 @@ class SettingsPage extends StatelessWidget {
                               );
                             },
                           );
-
                         },
                         child: CircleAvatar(
                           radius: 50,
@@ -236,9 +239,12 @@ class SettingsPage extends StatelessWidget {
                 ),
                 title: const Text("Theme"),
                 subtitle: const Text("Change Theme"),
-                trailing: Switch(
-                  value: settingProvider.isDark,
-                  onChanged: (value) => settingProvider.isDark = value,
+                trailing: Transform.scale(
+                  scale: 0.8,
+                  child: Switch(
+                    value: settingProvider.isDark,
+                    onChanged: (value) => settingProvider.isDark = value,
+                  ),
                 ),
               ),
               const SizedBox(height: 20),

@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/contact.dart';
-import '../../models/global.dart';
-import '../../provider/add_contact_provider.dart';
+import '../../../models/contact.dart';
+import '../../../models/global.dart';
+import '../../../provider/add_contact_provider.dart';
 
 class AddContactPage extends StatefulWidget {
   const AddContactPage({Key? key}) : super(key: key);
