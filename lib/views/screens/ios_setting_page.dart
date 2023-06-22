@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import '../../provider/settings_provider.dart';
 import '../../provider/profile_provider.dart';
 
-class IOS_SettingsPage extends StatelessWidget {
+class IOsSettingsPage extends StatelessWidget {
   final GlobalKey<FormState> profileFormKey = GlobalKey<FormState>();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController bioController = TextEditingController();
@@ -22,15 +22,16 @@ class IOS_SettingsPage extends StatelessWidget {
             SingleChildScrollView(
           child: Column(
             children: [
+              const SizedBox(height: 120),
               CupertinoFormSection(
                 children: [
                   CupertinoListTile(
-                    title: Text('Profile'),
-                    leading: Icon(
+                    title: const Text('Profile'),
+                    leading: const Icon(
                       CupertinoIcons.person,
                       color: CupertinoColors.systemGrey,
                     ),
-                    subtitle: Text('Update Profile Data'),
+                    subtitle: const Text('Update Profile Data'),
                     trailing: CupertinoSwitch(
                       value: settingProvider.isSwitched,
                       onChanged: (value) => settingProvider.isSwitched = value,
@@ -48,7 +49,7 @@ class IOS_SettingsPage extends StatelessWidget {
                                 context: context,
                                 builder: (BuildContext context) {
                                   return CupertinoActionSheet(
-                                    title: Text("Profile photo"),
+                                    title: const Text("Profile photo"),
                                     actions: [
                                       CupertinoActionSheetAction(
                                         onPressed: () async {
@@ -65,7 +66,7 @@ class IOS_SettingsPage extends StatelessWidget {
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
-                                          children: [
+                                          children: const [
                                             Icon(
                                               CupertinoIcons.camera,
                                               size: 35,
@@ -90,7 +91,7 @@ class IOS_SettingsPage extends StatelessWidget {
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
-                                          children: [
+                                          children: const [
                                             Icon(
                                               CupertinoIcons.photo,
                                               size: 35,
@@ -105,7 +106,7 @@ class IOS_SettingsPage extends StatelessWidget {
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
-                                      child: Text("Cancel"),
+                                      child: const Text("Cancel"),
                                     ),
                                   );
                                 },
@@ -123,7 +124,7 @@ class IOS_SettingsPage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Form(
                             key: profileFormKey,
                             child: Padding(
@@ -134,15 +135,15 @@ class IOS_SettingsPage extends StatelessWidget {
                                   CupertinoTextField(
                                     controller: nameController,
                                     placeholder: "Enter your name...",
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       border: null,
                                     ),
                                   ),
-                                  SizedBox(height: 10),
+                                  const SizedBox(height: 10),
                                   CupertinoTextField(
                                     controller: bioController,
                                     placeholder: "Enter your bio...",
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       border: null,
                                     ),
                                   ),
@@ -150,7 +151,7 @@ class IOS_SettingsPage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -163,7 +164,7 @@ class IOS_SettingsPage extends StatelessWidget {
                                     profileProvider.setBio(bioController.text);
                                   }
                                 },
-                                child: Text(
+                                child: const Text(
                                   "SAVE",
                                   style: TextStyle(
                                       color: CupertinoColors.activeBlue),
@@ -177,7 +178,7 @@ class IOS_SettingsPage extends StatelessWidget {
                                   bioController.clear();
                                   profileProvider.setImage(null);
                                 },
-                                child: Text(
+                                child: const Text(
                                   "CLEAR",
                                   style: TextStyle(
                                       color: CupertinoColors.activeBlue),
@@ -185,7 +186,7 @@ class IOS_SettingsPage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                         ],
                       ),
                     )
@@ -196,12 +197,12 @@ class IOS_SettingsPage extends StatelessWidget {
               CupertinoFormSection(
                 children: [
                   CupertinoListTile(
-                    title: Text('Theme'),
-                    leading: Icon(
-                      CupertinoIcons.scissors,
+                    title: const Text('Theme'),
+                    leading: const Icon(
+                      CupertinoIcons.sun_max_fill,
                       color: CupertinoColors.systemGrey,
                     ),
-                    subtitle: Text('Change Theme'),
+                    subtitle: const Text('Change Theme'),
                     trailing: CupertinoSwitch(
                       value: settingProvider.isDark,
                       onChanged: (value) => settingProvider.isDark = value,
@@ -209,7 +210,6 @@ class IOS_SettingsPage extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
             ],
           ),
         ),

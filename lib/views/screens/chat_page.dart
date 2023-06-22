@@ -1,41 +1,3 @@
-// import 'dart:io';
-//
-// import 'package:flutter/material.dart';
-// import 'package:provider/provider.dart';
-//
-// import '../../provider/add_contact_android.dart';
-//
-// class ChatPage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     final contactProvider = Provider.of<ContactProvider>(context);
-//     final contacts = contactProvider.contacts;
-//
-//     return Scaffold(
-//       body: ListView.builder(
-//         itemCount: contacts.length,
-//         itemBuilder: (context, index) {
-//           final contact = contacts[index];
-//           return ListTile(
-//             leading: CircleAvatar(
-//               radius: 55,
-//               backgroundImage: contactProvider.contacts[index].imageFile != null
-//                   ? FileImage(contactProvider.contacts[index].imageFile!)
-//                   : null,
-//               child: contactProvider.contacts[index].imageFile == null
-//                   ? Icon(Icons.person)
-//                   : null,
-//             ),
-//             title: Text(contact.fullName ?? ''),
-//             subtitle: Text(contact.chat ?? ''),
-//             trailing: Text('${contact.date ?? ''} \n ${contact.time ?? ''}'),
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }
-
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -64,21 +26,21 @@ class _ChatContactPageState extends State<ChatContactPage> {
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
-        child: (Global.allChats.isEmpty)
+        child: (Global.allContacts.isEmpty)
             ? Container(
                 alignment: Alignment.center,
                 child: const Text("No any chats yet..."),
               )
             : ListView.builder(
                 padding: const EdgeInsets.all(12),
-                itemCount: Global.allChats.length,
+                itemCount: Global.allContacts.length,
                 itemBuilder: (context, index) {
                   return Card(
                     elevation: 3,
                     shadowColor: Colors.indigo,
                     child: ListTile(
                       onTap: () {
-                        // Navigator.of(context).pushNamed('contact_detail_page', arguments: Global.allContacts[index]).then((value) => setState((){}));
+                        Navigator.of(context).pushNamed('contact_detail_page', arguments: Global.allContacts[index]).then((value) => setState((){}));
                         showModalBottomSheet(
                           context: context,
                           builder: (context) => SingleChildScrollView(
@@ -104,7 +66,7 @@ class _ChatContactPageState extends State<ChatContactPage> {
                                                           source: ImageSource
                                                               .gallery);
                                                   setState(() {
-                                                    Global.allChats[index]
+                                                    Global.allContacts[index]
                                                             .image =
                                                         File(pickedPhoto!.path);
                                                   });
@@ -119,7 +81,7 @@ class _ChatContactPageState extends State<ChatContactPage> {
                                                           source: ImageSource
                                                               .camera);
                                                   setState(() {
-                                                    Global.allChats[index]
+                                                    Global.allContacts[index]
                                                             .image =
                                                         File(pickedFile!.path);
                                                   });
@@ -135,9 +97,9 @@ class _ChatContactPageState extends State<ChatContactPage> {
                                     child: CircleAvatar(
                                       radius: 50,
                                       foregroundImage:
-                                          (Global.allChats[index].image != null)
+                                          (Global.allContacts[index].image != null)
                                               ? FileImage(
-                                                  Global.allChats[index].image!)
+                                                  Global.allContacts[index].image!)
                                               : null,
                                       backgroundColor: Colors.indigo,
                                       child: const Icon(
@@ -217,17 +179,17 @@ class _ChatContactPageState extends State<ChatContactPage> {
                       },
                       leading: CircleAvatar(
                         radius: 30,
-                        foregroundImage: (Global.allChats[index].image != null)
-                            ? FileImage(Global.allChats[index].image!)
+                        foregroundImage: (Global.allContacts[index].image != null)
+                            ? FileImage(Global.allContacts[index].image!)
                             : null,
                         child: Text(
-                          Global.allChats[index].fullName![0].toUpperCase(),
+                          Global.allContacts[index].fullName![0].toUpperCase(),
                         ),
                       ),
-                      title: Text("${Global.allChats[index].fullName}"),
-                      subtitle: Text("${Global.allChats[index].chat}"),
+                      title: Text("${Global.allContacts[index].fullName}"),
+                      subtitle: Text("${Global.allContacts[index].chat}"),
                       trailing: Text(
-                          "${Global.allChats[index].date}, ${Global.allChats[index].time}"),
+                          "${Global.allContacts[index].date}, ${Global.allContacts[index].time}"),
                     ),
                   );
                 },

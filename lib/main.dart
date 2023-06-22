@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:platform_convertar/provider/add_contact_android.dart';
+import 'package:platform_convertar/provider/add_contact_provider.dart';
 import 'package:platform_convertar/provider/profile_provider.dart';
 import 'package:platform_convertar/provider/settings_provider.dart';
+import 'package:platform_convertar/views/screens/ios_home_page.dart';
 import 'package:provider/provider.dart';
 import 'package:platform_convertar/provider/platform_provider.dart';
-import 'package:platform_convertar/views/screens/android_home_page.dart';
-import 'package:platform_convertar/views/screens/ios_home_page.dart';
+import 'package:platform_convertar/views/screens/home_page.dart';
 
 void main() {
   runApp(
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
                 theme: settingProvider.isDark
                     ? ThemeData.dark(useMaterial3: true)
                     : ThemeData.light(useMaterial3: true),
-                home: HomePage_Android(),
+                home: HomePage(),
               )
             : CupertinoApp(
                 debugShowCheckedModeBanner: false,
@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
                       ? Brightness.dark
                       : Brightness.light,
                 ),
-                home: HomePage_Ios(),
+                home: const IOsHomePage(),
               );
       },
     );

@@ -22,7 +22,7 @@ class SettingsPage extends StatelessWidget {
           child: Column(
             children: [
               ListTile(
-                leading: Icon(
+                leading: const Icon(
                   Icons.person,
                   color: Colors.grey,
                 ),
@@ -54,19 +54,15 @@ class SettingsPage extends StatelessWidget {
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
-                                      children: [
+                                      children: const [
                                         Text(
                                           "Profile photo",
-                                        ),
-                                        // IconButton(
-                                        //     onPressed: () {},
-                                        //     icon: Icon(Icons.delete))
-                                      ],
+                                        ),],
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                          MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Column(
                                           mainAxisAlignment:
@@ -75,7 +71,7 @@ class SettingsPage extends StatelessWidget {
                                             SizedBox(
                                               height: 65,
                                               child: ElevatedButton(
-                                                  child: Icon(
+                                                  child: const Icon(
                                                     Icons.camera_alt,
                                                     size: 35,
                                                   ),
@@ -94,15 +90,15 @@ class SettingsPage extends StatelessWidget {
                                                     Navigator.of(context).pop();
                                                   }),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 9,
                                             ),
-                                            Text(
+                                            const Text(
                                               "Camera",
                                             ),
                                           ],
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 8,
                                         ),
                                         Column(
@@ -110,7 +106,7 @@ class SettingsPage extends StatelessWidget {
                                             SizedBox(
                                               height: 65,
                                               child: ElevatedButton(
-                                                  child: Icon(
+                                                  child: const Icon(
                                                     Icons.photo_library,
                                                     size: 35,
                                                   ),
@@ -129,10 +125,10 @@ class SettingsPage extends StatelessWidget {
                                                     Navigator.of(context).pop();
                                                   }),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 9,
                                             ),
-                                            Text(
+                                            const Text(
                                               "Gallery",
                                             ),
                                           ],
@@ -145,39 +141,6 @@ class SettingsPage extends StatelessWidget {
                             },
                           );
 
-                          // return AlertDialog(
-                          //   title: const Text(
-                          //       'What do you want to take photos from?'),
-                          //   actions: [
-                          //     ElevatedButton(
-                          //       onPressed: () async {
-                          //         final pickedPhoto =
-                          //             await picker.pickImage(
-                          //           source: ImageSource.gallery,
-                          //         );
-                          //         if (pickedPhoto != null) {
-                          //           profileProvider
-                          //               .setImage(File(pickedPhoto.path));
-                          //         }
-                          //         Navigator.of(context).pop();
-                          //       },
-                          //       child: const Text("ALBUMS"),
-                          //     ),
-                          //     ElevatedButton(
-                          //       onPressed: () async {
-                          //         final pickedFile = await picker.pickImage(
-                          //           source: ImageSource.camera,
-                          //         );
-                          //         if (pickedFile != null) {
-                          //           profileProvider
-                          //               .setImage(File(pickedFile.path));
-                          //         }
-                          //         Navigator.of(context).pop();
-                          //       },
-                          //       child: const Text("CAMERA"),
-                          //     ),
-                          //   ],
-                          // );
                         },
                         child: CircleAvatar(
                           radius: 50,
@@ -191,7 +154,7 @@ class SettingsPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Form(
                         key: profileFormKey,
                         child: Padding(
@@ -214,7 +177,7 @@ class SettingsPage extends StatelessWidget {
                                   hintText: "Enter your name...",
                                 ),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               TextFormField(
                                 controller: bioController,
                                 textInputAction: TextInputAction.done,
@@ -227,7 +190,7 @@ class SettingsPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -259,7 +222,7 @@ class SettingsPage extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                     ],
                   ),
                 )
@@ -267,12 +230,12 @@ class SettingsPage extends StatelessWidget {
                 Container(),
               const Divider(),
               ListTile(
-                leading: Icon(
+                leading: const Icon(
                   Icons.sunny,
                   color: Colors.grey,
                 ),
-                title: Text("Theme"),
-                subtitle: Text("Change Theme"),
+                title: const Text("Theme"),
+                subtitle: const Text("Change Theme"),
                 trailing: Switch(
                   value: settingProvider.isDark,
                   onChanged: (value) => settingProvider.isDark = value,
