@@ -105,8 +105,8 @@ class _IOsAddContactPageState extends State<IOsAddContactPage> {
                     backgroundImage: image != null ? FileImage(image!) : null,
                     child: image == null
                         ? const Icon(
-                            Icons.person,
-                            size: 75,
+                            CupertinoIcons.camera,
+                            size: 35,
                           )
                         : null,
                   ),
