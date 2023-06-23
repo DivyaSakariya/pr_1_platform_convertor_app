@@ -119,24 +119,20 @@ class _IOsAddContactPageState extends State<IOsAddContactPage> {
                     builder: (context, settingPro, _) {
                   return Column(
                     children: [
-                      Row(
-                        children: [
-                          CupertinoTextField(
-                            controller: fullNameController,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: CupertinoColors.systemGrey,
-                              ),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            textInputAction: TextInputAction.next,
-                            prefix: const Padding(
-                              padding: EdgeInsets.all(10),
-                              child: Icon(CupertinoIcons.person),
-                            ),
-                            placeholder: 'Full Name',
+                      CupertinoTextField(
+                        controller: fullNameController,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: CupertinoColors.systemGrey,
                           ),
-                        ],
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        textInputAction: TextInputAction.next,
+                        prefix: const Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Icon(CupertinoIcons.person),
+                        ),
+                        placeholder: 'Full Name',
                       ),
                       SizedBox(height: h * 0.02),
                       CupertinoTextField(
@@ -228,11 +224,11 @@ class _IOsAddContactPageState extends State<IOsAddContactPage> {
                         ],
                       ),
                       onTap: () {
-                        provider.showMyTime(context);
+                        provider.showCupertinoTime(context);
                       },
                     ),
                     SizedBox(width: w * 0.08),
-                    Text(provider.time),
+                    Text(provider.newCupertinoTime),
                   ],
                 ),
               ),
@@ -252,10 +248,10 @@ class _IOsAddContactPageState extends State<IOsAddContactPage> {
                       image: image,
                       date: Provider.of<AddContactProvider>(context,
                               listen: false)
-                          .date,
+                          .newCupertinoDate,
                       time: Provider.of<AddContactProvider>(context,
                               listen: false)
-                          .time,
+                          .newCupertinoTime,
                     );
 
                     fullNameController.clear();
@@ -264,6 +260,8 @@ class _IOsAddContactPageState extends State<IOsAddContactPage> {
                     emailController.clear();
                     image = null;
                     Global.allContacts.add(c1);
+                    Provider.of<AddContactProvider>(context)
+                        .clearDateTimeData();
 
                     Provider.of<AddContactProvider>(context, listen: false)
                         .hotReload();

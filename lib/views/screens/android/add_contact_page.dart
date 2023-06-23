@@ -168,7 +168,7 @@ class _AddContactPageState extends State<AddContactPage> {
                               ],
                             ),
                             onTap: () {
-                              provider.showMyTime(context);
+                              provider.showMaterialTime(context);
                             },
                           ),
                           SizedBox(width: w * 0.08),

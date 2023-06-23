@@ -1,12 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:platform_convertar/provider/settings_provider.dart';
+import 'package:provider/provider.dart';
 
 class AddContactProvider extends ChangeNotifier {
   String date = "";
   String time = "";
+  DateTime cupertinoTime = DateTime.now();
   DateTime cupertinoDate = DateTime.now();
   String newCupertinoDate = "";
+  String newCupertinoTime = "";
 
   showMyDate(BuildContext context) async {
     DateTime? pickDate = await showDatePicker(
@@ -23,7 +27,7 @@ class AddContactProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  showMyTime(BuildContext context) async {
+  showMaterialTime(BuildContext context) async {
     final TimeOfDay? newTime = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.now(),
@@ -37,26 +41,59 @@ class AddContactProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  showCupertinoDate(BuildContext context) async {
-    cupertinoDate = (await showModalBottomSheet<DateTime>(
+  void showCupertinoTime(BuildContext context) {
+    showCupertinoModalPopup(
       context: context,
-      builder: (context) => SizedBox(
-        height: MediaQuery.of(context).size.height / 4,
-        child: CupertinoDatePicker(
-          initialDateTime: DateTime.now(),
-          onDateTimeChanged: (DateTime value) {
-            cupertinoDate = value;
-            notifyListeners();
-            print(value);
-          },
-          minimumYear: 1990,
-          maximumYear: 2099,
-          mode: CupertinoDatePickerMode.date,
-        ),
-      ),
-    ))!;
+      builder: (BuildContext context) {
+        return Container(
+          height: MediaQuery.of(context).size.height / 4,
+          color: (Provider.of<SettingProvider>(context).isDark)
+              ? Colors.black
+              : Colors.white,
+          child: CupertinoDatePicker(
+            initialDateTime: cupertinoTime,
+            mode: CupertinoDatePickerMode.time,
+            use24hFormat: true,
+            onDateTimeChanged: (value) {
+              cupertinoTime = value;
+              newCupertinoTime =
+                  "${cupertinoTime.hour} : ${cupertinoTime.minute}";
+              notifyListeners();
+            },
+          ),
+        );
+      },
+    );
+  }
 
-    newCupertinoDate = DateFormat("dd/MM/yyyy").format(cupertinoDate);
+  void showCupertinoDate(BuildContext context) {
+    showCupertinoModalPopup(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          height: MediaQuery.of(context).size.height / 4,
+          color: (Provider.of<SettingProvider>(context).isDark)
+              ? Colors.black
+              : Colors.white,
+          child: CupertinoDatePicker(
+            initialDateTime: cupertinoDate,
+            mode: CupertinoDatePickerMode.date,
+            onDateTimeChanged: (value) {
+              cupertinoDate = value;
+              newCupertinoDate =
+                  "${cupertinoDate.day} - ${cupertinoDate.month} - ${cupertinoDate.year}";
+              notifyListeners();
+            },
+          ),
+        );
+      },
+    );
+  }
+
+  clearDateTimeData() {
+    newCupertinoDate = "";
+    newCupertinoTime = "";
+    notifyListeners();
   }
 
   hotReload() {
