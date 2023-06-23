@@ -11,7 +11,7 @@ class IOsChatPage extends StatelessWidget {
         child: (Global.allContacts.isEmpty)
             ? Container(
                 alignment: Alignment.center,
-                child: const Text("No any calls yet..."),
+                child: const Text("No any chats yet..."),
               )
             : ListView.builder(
                 itemCount: Global.allContacts.length,

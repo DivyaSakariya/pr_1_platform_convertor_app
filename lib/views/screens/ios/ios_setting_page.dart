@@ -26,7 +26,7 @@ class IOsSettingsPage extends StatelessWidget {
             margin: const EdgeInsets.all(12),
             child: Column(
               children: [
-                SizedBox(height: h * 0.08),
+                SizedBox(height: h * 0.06),
                 CupertinoFormSection(
                   children: [
                     CupertinoListTile(
